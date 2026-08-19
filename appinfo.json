@@ -1,0 +1,9 @@
+{
+  "id": "com.streamplayer.app",
+  "version": "2.5.0",
+  "vendor": "SubPlayer",
+  "type": "web",
+  "main": "index.html",
+  "title": "SubPlayer",
+  "icon": "icon.png"
+}
