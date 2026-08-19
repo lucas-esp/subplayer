@@ -1,36 +1,36 @@
 # SubPlayer
 
-**SubPlayer** is a native webOS application for LG Smart TVs that lets you watch IPTV channels, VOD (Video on Demand), and Series using your **Xtream Codes** provider credentials.
+**SubPlayer** é um aplicativo nativo para TVs LG Smart (webOS) que permite assistir canais IPTV, VOD (Vídeo sob Demanda) e Séries usando as credenciais do seu provedor **Xtream Codes**.
 
-> Version: 2.5.0
-
----
-
-## Features
-
-- Live TV with channel list and category browsing
-- EPG (Electronic Program Guide) with real-time program info
-- VOD and Series support with episode navigation
-- Favorites system for quick access to your preferred channels
-- Channel browser overlay while watching live TV
-- Search across channels and categories
-- Full remote control navigation (no mouse needed)
-- Lightweight single-file app — fast and responsive
+> Versão: 2.5.0
 
 ---
 
-## Requirements
+## Funcionalidades
 
-- LG Smart TV running **webOS 3.x or later**
-- TV must be in **Developer Mode** (see setup below)
-- A valid **Xtream Codes** IPTV subscription (URL, username, password)
-- A computer with **Node.js** and **ares-cli** installed
+- TV ao vivo com lista de canais e navegação por categorias
+- EPG (Guia de Programação Eletrônico) com informações em tempo real
+- Suporte a VOD e Séries com navegação por episódios
+- Sistema de favoritos para acesso rápido aos canais preferidos
+- Navegador de canais sobreposto enquanto assiste TV ao vivo
+- Busca por canais e categorias
+- Navegação completa pelo controle remoto (sem necessidade de mouse)
+- App leve em arquivo único — rápido e responsivo
 
 ---
 
-## Installation
+## Requisitos
 
-### 1. Install ares-cli
+- TV LG Smart rodando **webOS 3.x ou superior**
+- TV deve estar em **Modo Desenvolvedor** (veja a configuração abaixo)
+- Uma assinatura **Xtream Codes** válida (URL, usuário e senha)
+- Um computador com **Node.js** e **ares-cli** instalados
+
+---
+
+## Instalação
+
+### 1. Instalar o ares-cli
 
 #### macOS (via Homebrew)
 
@@ -47,111 +47,111 @@ npm install -g @webosose/ares-cli
 
 ---
 
-### 2. Enable Developer Mode on your LG TV
+### 2. Ativar o Modo Desenvolvedor na sua TV LG
 
-1. On your LG TV, go to **Settings → About This TV**
-2. Click the version number **5 times rapidly** to unlock the secret menu
-3. Enable **Developer Mode**
-4. Note the **TV's IP address** (Settings → Network → Wi-Fi Connection → Advanced Settings)
+1. Na TV, vá em **Configurações → Sobre esta TV**
+2. Clique no número da versão **5 vezes rapidamente** para desbloquear o menu secreto
+3. Ative o **Modo Desenvolvedor**
+4. Anote o **endereço IP da TV** (Configurações → Rede → Conexão Wi-Fi → Configurações avançadas)
 
 ---
 
-### 3. Set up the TV device in ares-cli
+### 3. Configurar o dispositivo no ares-cli
 
 ```bash
 ares-setup-device
 ```
 
-Follow the prompts:
-- **Device name:** `mytv` (or any name you like)
-- **IP address:** your TV's IP (e.g., `192.168.1.100`)
-- **Port:** `9922`
-- **Username:** `prisoner`
-- **Authentication:** password
-- **Password:** *(leave empty, just press Enter)*
+Preencha os campos:
+- **Nome do dispositivo:** `minhatv` (ou qualquer nome)
+- **Endereço IP:** o IP da sua TV (ex: `192.168.1.100`)
+- **Porta:** `9922`
+- **Usuário:** `prisoner`
+- **Autenticação:** password
+- **Senha:** *(deixe em branco, só pressione Enter)*
 
-Verify the connection:
+Verifique a conexão:
 
 ```bash
-ares-novacom --device mytv --getkey
+ares-novacom --device minhatv --getkey
 ```
 
-A passphrase prompt will appear on your TV — accept it.
+Uma mensagem de confirmação aparecerá na TV — aceite.
 
 ---
 
-### 4. Package and Install the App
+### 4. Empacotar e Instalar o App
 
-Clone this repository:
+Clone este repositório:
 
 ```bash
 git clone https://github.com/lucas-esp/subplayer.git
 cd subplayer
 ```
 
-Package the app:
+Empacote o app:
 
 ```bash
 ares-package .
 ```
 
-This generates a `.ipk` file (e.g., `com.streamplayer.app_2.5.0_all.ipk`).
+Isso gera um arquivo `.ipk` (ex: `com.streamplayer.app_2.5.0_all.ipk`).
 
-Install on your TV:
-
-```bash
-ares-install --device mytv com.streamplayer.app_2.5.0_all.ipk
-```
-
-Launch it:
+Instale na TV:
 
 ```bash
-ares-launch --device mytv com.streamplayer.app
+ares-install --device minhatv com.streamplayer.app_2.5.0_all.ipk
+```
+
+Abra o app:
+
+```bash
+ares-launch --device minhatv com.streamplayer.app
 ```
 
 ---
 
-## First-Time Setup
+## Configuração Inicial
 
-1. Open **SubPlayer** on your TV
-2. On the **Home Screen**, select **Connect / Settings**
-3. Enter your Xtream Codes credentials:
-   - **Server URL** (e.g., `http://yourprovider.com:8080`)
-   - **Username**
-   - **Password**
-4. Press **Connect** — channels and categories will load automatically
-
----
-
-## Navigation
-
-| Button | Action |
-|--------|--------|
-| Arrow keys | Navigate menus |
-| OK / Enter | Select / Confirm |
-| Back | Go back / Close |
-| Play/Pause | Toggle playback |
-| Channel Up/Down | Switch channels while watching |
-| 0–9 | Direct channel number input |
+1. Abra o **SubPlayer** na sua TV
+2. Na **Tela Inicial**, selecione **Conectar / Configurações**
+3. Informe as credenciais do seu provedor Xtream Codes:
+   - **URL do servidor** (ex: `http://seuprovedor.com:8080`)
+   - **Usuário**
+   - **Senha**
+4. Pressione **Conectar** — os canais e categorias carregarão automaticamente
 
 ---
 
-## Troubleshooting
+## Navegação pelo Controle Remoto
 
-**App not installing?**
-- Make sure Developer Mode is active and the TV is on the same network as your computer.
-
-**TV not found by ares-cli?**
-- Double-check the IP address and that port `9922` is reachable.
-
-**Channels not loading?**
-- Verify your Xtream Codes URL, username, and password are correct.
-
-**Black screen when playing?**
-- Some streams require specific codecs. Try a different channel to confirm the app is working.
+| Botão | Ação |
+|-------|------|
+| Setas direcionais | Navegar pelos menus |
+| OK / Enter | Selecionar / Confirmar |
+| Voltar | Retroceder / Fechar |
+| Play/Pause | Controlar reprodução |
+| Canal +/- | Trocar canal durante a reprodução |
+| 0–9 | Digitar número do canal diretamente |
 
 ---
 
-## License
+## Solução de Problemas
 
-MIT — free to use and modify.
+**App não instala?**
+- Verifique se o Modo Desenvolvedor está ativo e que a TV está na mesma rede que o computador.
+
+**TV não encontrada pelo ares-cli?**
+- Confira o endereço IP e se a porta `9922` está acessível.
+
+**Canais não carregam?**
+- Verifique se a URL, usuário e senha do Xtream Codes estão corretos.
+
+**Tela preta ao reproduzir?**
+- Alguns streams exigem codecs específicos. Teste outro canal para confirmar que o app está funcionando.
+
+---
+
+## Licença
+
+MIT — livre para usar e modificar.
